@@ -3,14 +3,14 @@ session_start();
 require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = trim($_POST['email']);
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
     
-    if (empty($email) || empty($password)) {
-        $_SESSION['error'] = "Email and password are required.";
+    if (empty($username) || empty($password)) {
+        $_SESSION['error'] = "Username and password are required.";
     } else {
-        $stmt = mysqli_prepare($conn, "SELECT user_id, username, password, full_name, role, active FROM users WHERE email = ?");
-        mysqli_stmt_bind_param($stmt, "s", $email);
+        $stmt = mysqli_prepare($conn, "SELECT user_id, username, password, full_name, role, active FROM users WHERE username = ?");
+        mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         
@@ -67,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         ?>
                                         <form method="POST">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" required />
-                                                <label for="inputEmail">Email address</label>
+                                                <input class="form-control" id="inputUsername" name="username" type="text" placeholder="username" required />
+                                                <label for="inputUsername">Username</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputPassword" name="password" type="password" placeholder="Password" required />

@@ -340,6 +340,101 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `full_name`, `email`, `r
 (1, 'admin', '$2y$10$8IVCgxX8RmpUVQCZO3EoK.FV1NM5tUdcQwXldJWF5JwjzlKiI5HRe', 'System Administrator', 'admin@example.com', 'admin', 1, '2025-06-02 04:17:37', '2025-06-02 04:17:37');
 
 --
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `contact_person`, `contact_email`, `contact_phone`, `address`, `city`, `state`, `postal_code`, `country`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 'TechCorp Solutions', 'John Smith', 'john.smith@techcorp.com', '+1-555-0101', '123 Technology Drive', 'San Francisco', 'California', '94102', 'USA', 'Primary electronics supplier', NOW(), NOW()),
+(2, 'Office Plus Supplies', 'Sarah Johnson', 'sarah@officeplus.com', '+1-555-0202', '456 Business Avenue', 'New York', 'New York', '10001', 'USA', 'Office supplies and stationery', NOW(), NOW()),
+(3, 'Global Furniture Co.', 'Mike Chen', 'mike.chen@globalfurniture.com', '+1-555-0303', '789 Industrial Park', 'Chicago', 'Illinois', '60601', 'USA', 'Office and warehouse furniture', NOW(), NOW()),
+(4, 'Steel & Materials Inc.', 'Lisa Rodriguez', 'lisa@steelmaterials.com', '+1-555-0404', '321 Manufacturing Blvd', 'Detroit', 'Michigan', '48201', 'USA', 'Raw materials and steel products', NOW(), NOW()),
+(5, 'ToolMaster Equipment', 'David Wilson', 'david@toolmaster.com', '+1-555-0505', '654 Workshop Street', 'Houston', 'Texas', '77001', 'USA', 'Professional tools and equipment', NOW(), NOW());
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `customer_name`, `contact_person`, `contact_email`, `contact_phone`, `address`, `city`, `state`, `postal_code`, `country`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 'ABC Manufacturing', 'Robert Taylor', 'robert.taylor@abcmfg.com', '+1-555-1001', '100 Factory Lane', 'Los Angeles', 'California', '90001', 'USA', 'Regular customer - monthly orders', NOW(), NOW()),
+(2, 'XYZ Retail Chain', 'Emily Davis', 'emily.davis@xyzretail.com', '+1-555-1002', '200 Commerce Street', 'Miami', 'Florida', '33101', 'USA', 'Large retail chain - bulk orders', NOW(), NOW()),
+(3, 'Tech Startup Hub', 'Alex Morgan', 'alex@techstartup.com', '+1-555-1003', '300 Innovation Drive', 'Austin', 'Texas', '73301', 'USA', 'Technology startup - office supplies', NOW(), NOW()),
+(4, 'Construction Plus LLC', 'Jennifer Brown', 'jen.brown@constructionplus.com', '+1-555-1004', '400 Builder Avenue', 'Denver', 'Colorado', '80201', 'USA', 'Construction company - tools and materials', NOW(), NOW()),
+(5, 'Metro Office Solutions', 'Kevin Lee', 'kevin@metrooffice.com', '+1-555-1005', '500 Business Plaza', 'Seattle', 'Washington', '98101', 'USA', 'Office furniture and supplies', NOW(), NOW());
+
+--
+-- Dumping data for table `inventory_items`
+--
+
+INSERT INTO `inventory_items` (`item_id`, `item_code`, `item_name`, `description`, `category_id`, `cost_price`, `selling_price`, `reorder_level`, `current_stock`, `created_at`, `updated_at`) VALUES
+(1, 'ELC-001', 'Laptop Computer', 'Business grade laptop with 16GB RAM and 512GB SSD', 1, 750.00, 1200.00, 5, 25, NOW(), NOW()),
+(2, 'ELC-002', 'Wireless Mouse', 'Ergonomic wireless optical mouse', 1, 15.00, 35.00, 20, 50, NOW(), NOW()),
+(3, 'ELC-003', 'LED Monitor 24"', '24-inch Full HD LED monitor', 1, 120.00, 220.00, 10, 18, NOW(), NOW()),
+(4, 'OFS-001', 'A4 Copy Paper', 'White copy paper 80gsm - 500 sheets pack', 2, 4.50, 8.99, 50, 200, NOW(), NOW()),
+(5, 'OFS-002', 'Blue Ballpoint Pen', 'Medium tip blue ink ballpoint pen', 2, 0.25, 0.75, 100, 500, NOW(), NOW()),
+(6, 'OFS-003', 'Stapler Heavy Duty', 'Heavy duty stapler for up to 50 sheets', 2, 12.00, 25.00, 15, 30, NOW(), NOW()),
+(7, 'FUR-001', 'Office Chair Executive', 'Ergonomic executive office chair with lumbar support', 3, 180.00, 350.00, 8, 15, NOW(), NOW()),
+(8, 'FUR-002', 'Desk Wooden L-Shape', 'L-shaped wooden desk with drawers', 3, 220.00, 450.00, 5, 12, NOW(), NOW()),
+(9, 'FUR-003', 'Filing Cabinet 4-Drawer', 'Metal filing cabinet with 4 drawers and lock', 3, 95.00, 180.00, 10, 22, NOW(), NOW()),
+(10, 'RAW-001', 'Steel Rod 10mm', 'Construction steel rod 10mm diameter - per meter', 4, 3.50, 6.00, 100, 500, NOW(), NOW()),
+(11, 'RAW-002', 'Aluminum Sheet 2mm', 'Aluminum sheet 2mm thickness - per square meter', 4, 8.00, 15.00, 50, 150, NOW(), NOW()),
+(12, 'TOL-001', 'Electric Drill 18V', 'Cordless electric drill with battery and charger', 5, 85.00, 160.00, 8, 20, NOW(), NOW()),
+(13, 'TOL-002', 'Hammer Steel 500g', 'Steel claw hammer 500g with fiberglass handle', 5, 12.00, 24.00, 25, 45, NOW(), NOW()),
+(14, 'TOL-003', 'Screwdriver Set', 'Professional screwdriver set with 12 pieces', 5, 18.00, 35.00, 15, 35, NOW(), NOW());
+
+--
+-- Dumping data for table `purchase_orders`
+--
+
+INSERT INTO `purchase_orders` (`po_id`, `po_number`, `supplier_id`, `order_date`, `expected_date`, `status`, `total_amount`, `notes`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'PO-2025-001', 1, '2025-05-15', '2025-05-25', 'received', 19250.00, 'Monthly electronics order', 1, '2025-05-15 09:00:00', '2025-05-25 14:30:00'),
+(2, 'PO-2025-002', 2, '2025-05-20', '2025-05-30', 'received', 1487.50, 'Office supplies restock', 1, '2025-05-20 10:15:00', '2025-05-30 11:45:00'),
+(3, 'PO-2025-003', 3, '2025-05-25', '2025-06-05', 'approved', 5400.00, 'Furniture for new office section', 1, '2025-05-25 13:20:00', '2025-05-25 13:20:00'),
+(4, 'PO-2025-004', 5, '2025-06-01', '2025-06-10', 'pending', 2850.00, 'Tool maintenance and new equipment', 1, '2025-06-01 08:30:00', '2025-06-01 08:30:00');
+
+--
+-- Dumping data for table `purchase_order_items`
+--
+
+INSERT INTO `purchase_order_items` (`po_item_id`, `po_id`, `item_id`, `quantity`, `unit_price`, `received_quantity`, `location_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 15, 750.00, 15, 1, 'fully_received', '2025-05-15 09:00:00', '2025-05-25 14:30:00'),
+(2, 1, 2, 30, 15.00, 30, 1, 'fully_received', '2025-05-15 09:00:00', '2025-05-25 14:30:00'),
+(3, 1, 3, 20, 120.00, 20, 1, 'fully_received', '2025-05-15 09:00:00', '2025-05-25 14:30:00'),
+(4, 2, 4, 150, 4.50, 150, 1, 'fully_received', '2025-05-20 10:15:00', '2025-05-30 11:45:00'),
+(5, 2, 5, 400, 0.25, 400, 1, 'fully_received', '2025-05-20 10:15:00', '2025-05-30 11:45:00'),
+(6, 2, 6, 25, 12.00, 25, 1, 'fully_received', '2025-05-20 10:15:00', '2025-05-30 11:45:00'),
+(7, 3, 7, 12, 180.00, 0, 1, 'pending', '2025-05-25 13:20:00', '2025-05-25 13:20:00'),
+(8, 3, 8, 8, 220.00, 0, 1, 'pending', '2025-05-25 13:20:00', '2025-05-25 13:20:00'),
+(9, 3, 9, 15, 95.00, 0, 1, 'pending', '2025-05-25 13:20:00', '2025-05-25 13:20:00'),
+(10, 4, 12, 15, 85.00, 0, 1, 'pending', '2025-06-01 08:30:00', '2025-06-01 08:30:00'),
+(11, 4, 13, 30, 12.00, 0, 1, 'pending', '2025-06-01 08:30:00', '2025-06-01 08:30:00'),
+(12, 4, 14, 25, 18.00, 0, 1, 'pending', '2025-06-01 08:30:00', '2025-06-01 08:30:00');
+
+--
+-- Dumping data for table `sales_orders`
+--
+
+INSERT INTO `sales_orders` (`so_id`, `so_number`, `customer_id`, `order_date`, `shipping_date`, `status`, `total_amount`, `notes`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'SO-2025-001', 1, '2025-05-28', '2025-05-30', 'delivered', 14400.00, 'Regular monthly order', 1, '2025-05-28 09:30:00', '2025-05-30 16:00:00'),
+(2, 'SO-2025-002', 2, '2025-06-01', '2025-06-03', 'shipped', 8975.00, 'Bulk order for retail stores', 1, '2025-06-01 11:00:00', '2025-06-03 10:30:00'),
+(3, 'SO-2025-003', 3, '2025-06-02', NULL, 'processing', 2250.00, 'Startup office setup', 1, '2025-06-02 14:15:00', '2025-06-02 14:15:00');
+
+--
+-- Dumping data for table `sales_order_items`
+--
+
+INSERT INTO `sales_order_items` (`so_item_id`, `so_id`, `item_id`, `quantity`, `unit_price`, `shipped_quantity`, `location_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 10, 1200.00, 10, 1, 'fully_shipped', '2025-05-28 09:30:00', '2025-05-30 16:00:00'),
+(2, 1, 3, 8, 220.00, 8, 1, 'fully_shipped', '2025-05-28 09:30:00', '2025-05-30 16:00:00'),
+(3, 1, 7, 2, 350.00, 2, 1, 'fully_shipped', '2025-05-28 09:30:00', '2025-05-30 16:00:00'),
+(4, 2, 4, 100, 8.99, 100, 1, 'fully_shipped', '2025-06-01 11:00:00', '2025-06-03 10:30:00'),
+(5, 2, 5, 200, 0.75, 200, 1, 'fully_shipped', '2025-06-01 11:00:00', '2025-06-03 10:30:00'),
+(6, 2, 6, 15, 25.00, 15, 1, 'fully_shipped', '2025-06-01 11:00:00', '2025-06-03 10:30:00'),
+(7, 2, 10, 500, 6.00, 500, 1, 'fully_shipped', '2025-06-01 11:00:00', '2025-06-03 10:30:00'),
+(8, 2, 11, 100, 15.00, 100, 1, 'fully_shipped', '2025-06-01 11:00:00', '2025-06-03 10:30:00'),
+(9, 3, 2, 15, 35.00, 0, 1, 'pending', '2025-06-02 14:15:00', '2025-06-02 14:15:00'),
+(10, 3, 7, 5, 350.00, 0, 1, 'pending', '2025-06-02 14:15:00', '2025-06-02 14:15:00');
+
+--
 -- Indexes for dumped tables
 --
 
