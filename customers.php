@@ -99,7 +99,7 @@ $result = mysqli_query($conn, $sql);
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand ps-3" href="tables.html">Inventory System</a>
+            <a class="navbar-brand ps-3" href="index.html">Inventory System</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
@@ -126,7 +126,7 @@ $result = mysqli_query($conn, $sql);
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -188,7 +188,7 @@ $result = mysqli_query($conn, $sql);
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Customers</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="tables.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Customers</li>
                         </ol>
 
