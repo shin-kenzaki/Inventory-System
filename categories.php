@@ -1,5 +1,12 @@
 <?php
-// filepath: c:\xampp\htdocs\Inventory-System\categories.php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: 401.html");
+    exit();
+}
+
 require_once 'db.php';
 
 // Handle form submissions
@@ -79,9 +86,9 @@ $result = mysqli_query($conn, $sql);
         </style>
     </head>
     <body class="sb-nav-fixed">
-        <!-- Include navigation from index.html -->
+        <!-- Include navigation from index.php -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand ps-3" href="index.html">Inventory System</a>
+            <a class="navbar-brand ps-3" href="index.php">Inventory System</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -98,7 +105,7 @@ $result = mysqli_query($conn, $sql);
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -110,7 +117,7 @@ $result = mysqli_query($conn, $sql);
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -172,7 +179,7 @@ $result = mysqli_query($conn, $sql);
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Categories</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Categories</li>
                         </ol>
 

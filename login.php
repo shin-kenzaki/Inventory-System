@@ -1,3 +1,38 @@
+<?php
+session_start();
+require_once 'db.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    
+    if (empty($email) || empty($password)) {
+        $_SESSION['error'] = "Email and password are required.";
+    } else {
+        $stmt = mysqli_prepare($conn, "SELECT user_id, username, password, full_name, role, active FROM users WHERE email = ?");
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        
+        if ($user = mysqli_fetch_assoc($result)) {
+            if ($user['active'] == 1 && password_verify($password, $user['password'])) {
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['full_name'] = $user['full_name'];
+                $_SESSION['role'] = $user['role'];
+                $_SESSION['logged_in'] = true;
+                
+                header("Location: index.php");
+                exit();
+            } else {
+                $_SESSION['error'] = "Invalid credentials or account disabled.";
+            }
+        } else {
+            $_SESSION['error'] = "Invalid credentials.";
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,13 +55,23 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <?php
+                                        if (isset($_SESSION['error'])) {
+                                            echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+                                            unset($_SESSION['error']);
+                                        }
+                                        if (isset($_SESSION['success'])) {
+                                            echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+                                            unset($_SESSION['success']);
+                                        }
+                                        ?>
+                                        <form method="POST">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" required />
                                                 <label for="inputEmail">Email address</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                                                <input class="form-control" id="inputPassword" name="password" type="password" placeholder="Password" required />
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                             <div class="form-check mb-3">
@@ -35,12 +80,12 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.html">Forgot Password?</a>
-                                                <a class="btn btn-primary" href="index.html">Login</a>
+                                                <button class="btn btn-primary" type="submit">Login</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                                        <div class="small"><a href="register.php">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
                             </div>

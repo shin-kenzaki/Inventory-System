@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: 401.html");
+    exit();
+}
+
 require_once 'db.php';
 
 // Handle form submissions
@@ -115,7 +123,7 @@ while ($customer = mysqli_fetch_assoc($customers_result)) {
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -127,7 +135,7 @@ while ($customer = mysqli_fetch_assoc($customers_result)) {
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
